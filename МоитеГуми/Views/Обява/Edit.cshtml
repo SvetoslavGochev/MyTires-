@@ -1,0 +1,11 @@
+﻿@model ObqwaModel
+
+@{ ViewData["Title"] = "Редактиране"; }
+
+<h3 class="heading-margin text-center">Редактиране на обява</h3>
+
+<partial name="_ObqwaFormPartial" model="@Model" />
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,53 @@
+﻿@model Обява
+
+@{ ViewData["Title"] = "Информация"; }
+
+<h3 class="heading-margin text-center">Информация  </h3>
+
+
+
+@*<div class="col-md-3">
+    <div class="icon-box", align="center">
+        <a asp-area="" asp-controller="ОбяваController" asp-action="Info" asp-route="Id">
+            <img src="/МойтеГуми/Data/ImageUrl" alt=""/>
+        </a>
+    </div>
+</div>*@
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        @*6 i izmesti 3 pri malak 12 pri golqm 8 no izmesti 2 i pri xl  *@
+
+        @* ofseta samo na sredni ekrani  *@
+        @*<div offset - 3 class="col-5">izmesti 3 i zapo4ni 5reda ob6to 12 col- 12 na malki ekrani 12*@
+        @*enctype="multipart/form-data"*@ <!--da poddarja failove-->
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label asp-for="Marka">Модел</label>
+                <input asp-for="Marka" class="form-control">
+            </div>
+            <div class="form-group">
+                <label asp-for="Description">Описание</label>
+                <input asp-for="Description" class="form-control">
+
+            </div>
+            <div class="form-group">
+                <label asp-for="Size">Размер</label>
+                <input asp-for="Size" class="form-control">
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageUrl">Снимка</label>
+                <input asp-for="ImageUrl" class="form-control">
+            </div>
+            <div class="form-group">
+                <label asp-for="Year">Година на производство</label>
+                <input asp-for="Year" class="form-control">
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

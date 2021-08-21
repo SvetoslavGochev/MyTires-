@@ -1,0 +1,17 @@
+﻿@model IEnumerable<ObqwaServicesModel>
+
+@{
+    ViewData["Title"] = "Моите Обяви";
+    ViewBag.Edit = true;
+ }
+
+
+@if (!Model.Any())
+ {
+    <h2 class="text-center">Няма Обяви</h2>
+ }
+
+
+
+<partial name="_Obqwapartial" model="@Model" />
+

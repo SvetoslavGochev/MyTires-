@@ -1,0 +1,45 @@
+﻿@model ObqwaModel
+
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        @*6 i izmesti 3 pri malak 12 pri golqm 8 no izmesti 2 i pri xl  *@
+
+        @* ofseta samo na sredni ekrani  *@
+        @*<div offset - 3 class="col-5">izmesti 3 i zapo4ni 5reda ob6to 12 col- 12 na malki ekrani 12*@
+        @*enctype="multipart/form-data"*@ <!--da poddarja failove-->
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label asp-for="Marka">Модел</label>
+                <input asp-for="Marka" class="form-control" placeholder="Fulda,Michelin..">
+                <span class="small text-danger" asp-validation-for="Marka"></span> @*ako ima nevalidni 6te gi pi6e tuka*@
+            </div>
+            <div class="form-group">
+                <label asp-for="Description">Описание</label>
+                <input asp-for="Description" class="form-control" placeholder="Описание на гумите...">
+                <span asp-validation-for="Description" class="small text-danger"></span>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="Size">Размер</label>
+                <input asp-for="Size" class="form-control" placeholder="Размер на гумите 205/55/16...">
+                <span asp-validation-for="Size" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageUrl">Снимка</label>
+                <input asp-for="ImageUrl" class="form-control" placeholder="Снимка на гумите">
+                <span asp-validation-for="ImageUrl" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Year">Година на производство</label>
+                <input asp-for="Year" class="form-control" placeholder="Година на производство">
+                <span asp-validation-for="Year" class="small text-danger"></span>
+            </div>
+
+
+            <input class="btn btn-primary float-right mt-4" type="submit" value="Запази" />
+
+        </form>
+    </div>
+</div>
+

@@ -1,0 +1,25 @@
+﻿@model BecomeDealerFormModel
+
+@{ ViewData["Title"] = "BecomeDealer"; }
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+            <h3 class="heading-margin">Добавете дилър</h3>
+            <form method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label asp-for="Name">Име</label>
+                    <input asp-for="Name" class="form-control" placeholder="Име">
+                    <span class="small text-danger" asp-validation-for="Name"></span> @*ako ima nevalidni 6te gi pi6e tuka*@
+                </div>
+                <div class="form-group">
+                    <label asp-for="PhoneNumber">Телефон</label>
+                    <input asp-for="PhoneNumber" class="form-control" placeholder="Телефон..">
+                    <span asp-validation-for="PhoneNumber" class="small text-danger"></span>
+                </div>
+                <input class="btn btn-primary float-right heading-margin" type="submit" value="Save" />
+
+            </form>
+        </div>
+    </div>
+</div>

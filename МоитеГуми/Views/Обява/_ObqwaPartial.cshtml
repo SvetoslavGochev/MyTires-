@@ -1,0 +1,21 @@
+﻿@model IEnumerable<ObqwaServicesModel>
+
+<div class="row">
+    @foreach (var obqva in Model)
+    {
+     <div class="col-md-4">
+         <div class="card mb-3">
+             <img src="@obqva.ImageUrl" class="card-img-top" alt="@obqva.Marka - @obqva.Year (@obqva.CategoryName)">
+             <div class="card-body text-center">
+                 <h5 class="card-title text-center">@obqva.Marka @obqva.Size @obqva.CategoryName @obqva.Year</h5>
+                 <a asp-controller="Обява" asp-action="Info" asp-route-id="@obqva.Id" class="btn btn-primary">Информация</a>
+                 @if (ViewBag.Edit == true || User.IsAdmin())
+                 {
+                     <a asp-controller="Обява" asp-action="Edit" asp-route-id="@obqva.Id" class="btn btn-warning">Редактирай</a>
+                     <a asp-controller="Обява" asp-action="Delete" asp-route-id="@obqva.Id" class="btn btn-danger">Триене</a>
+                 }
+             </div>
+         </div>
+     </div>
+    }
+</div>
