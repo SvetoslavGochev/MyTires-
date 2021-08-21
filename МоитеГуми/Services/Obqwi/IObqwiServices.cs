@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
-using МоитеГуми.Data.Models;
-using МоитеГуми.Models.Обява;
-
-namespace МоитеГуми.Services.Obqwi
+﻿namespace МоитеГуми.Services.Obqwi
 {
+    using System.Collections.Generic;
+    using МоитеГуми.Data.Models;
+    using МоитеГуми.Models.Обява;
     public interface IObqwiServices
     {
-       Обява Info(int Id);
+        Обява Info(int Id);
         void DeleteAnoncment(int Id);
         ObqwaQueryServicesModel All(
             string marka,
@@ -15,7 +14,9 @@ namespace МоитеГуми.Services.Obqwi
             int currentPage,
             int obqwiPerPage);
 
-       
+        IEnumerable<LatestObqwaServiseModel> Latest();
+
+
         ObqwaDetailsServiceModel Details(int obqwaId);
 
 

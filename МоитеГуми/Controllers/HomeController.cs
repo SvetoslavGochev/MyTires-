@@ -1,38 +1,28 @@
 ﻿namespace МоитеГуми.Controllers
 {
-    using AutoMapper;
-    using AutoMapper.QueryableExtensions;
     using Microsoft.AspNetCore.Mvc;
-    using System.Diagnostics;
-    using System.Linq;
-    using МоитеГуми.Data;
-    using МоитеГуми.Models;
     using МоитеГуми.Models.Home;
+    using МоитеГуми.Services.Obqwi;
     using МоитеГуми.Services.Statistics;
+    using System.Linq;
 
     public class HomeController : Controller
     {
         private readonly IStatisticsService statistics;
-        private readonly IMapper mapper;
-        public readonly ApplicationDbContext data;
+        public readonly IObqwiServices obqwi;
 
         public HomeController(
             IStatisticsService statistics,
-            ApplicationDbContext data,
-            IMapper mapper)
+            IObqwiServices obqwi)
         {
             this.statistics = statistics;
-            this.data = data;
-            this.mapper = mapper;
+            this.obqwi = obqwi;
         }
         public IActionResult Index()
         {
-            var obqwi = this.data
-              .Обяви
-              .OrderByDescending(c => c.Id)
-              .ProjectTo<ObqwaIndexViewModel>(this.mapper.ConfigurationProvider)
-              .Take(3)
-              .ToList();
+            var latestObqwi = this.obqwi
+                .Latest()
+                .ToList();
 
             var TotalStatistics = this.statistics.Total();
 
@@ -40,7 +30,7 @@
             {
                 CountUsers = TotalStatistics.CountUsers,
                 CountAnnouncement = TotalStatistics.CountAnnouncement,
-                obqwi = obqwi
+                obqwi = latestObqwi
             }
             );
 

@@ -177,5 +177,15 @@
 
             return obqvaData;
         }
+
+        public IEnumerable<LatestObqwaServiseModel> Latest()
+        => this.data
+              .Обяви
+              .OrderByDescending(c => c.Id)
+              .ProjectTo<LatestObqwaServiseModel>(this.mapper.ConfigurationProvider)
+              .Take(3)
+              .ToList();
+
+       
     }
 }

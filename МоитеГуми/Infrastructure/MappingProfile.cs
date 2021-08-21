@@ -11,7 +11,7 @@
         public MappingProfile()
         {
             this.CreateMap<ObqwaDetailsServiceModel, ObqwaModel>();
-            this.CreateMap<Обява, ObqwaIndexViewModel>();
+            this.CreateMap<Обява, LatestObqwaServiseModel>();
 
 
             this.CreateMap<Обява, ObqwaDetailsServiceModel>()

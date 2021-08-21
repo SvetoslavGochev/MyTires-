@@ -1,7 +1,7 @@
 ﻿namespace МоитеГуми.Test.Mocks
 {
     using AutoMapper;
-    using Moq;
+    using МоитеГуми.Infrastructure;
 
     public static class MapperMock
     {
@@ -9,13 +9,14 @@
         {
             get
             {
-                var mapperMock = new Mock<IMapper>();
+                var mapperConfiguration = new MapperConfiguration(config =>
+                {
+                    config.AddProfile<MappingProfile>();
+                });
 
-                mapperMock
-                    .SetupGet(m => m.ConfigurationProvider)
-                    .Returns(Mock.Of<IConfigurationProvider>());
 
-                return mapperMock.Object;
+
+                return new Mapper(mapperConfiguration);
             }
         }
     }
