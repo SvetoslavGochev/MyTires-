@@ -5,24 +5,44 @@
     using МоитеГуми.Services.Obqwi;
     using МоитеГуми.Services.Statistics;
     using System.Linq;
+    using Microsoft.Extensions.Caching.Memory;
+    using System.Collections.Generic;
+    using System;
 
     public class HomeController : Controller
     {
         private readonly IStatisticsService statistics;
         public readonly IObqwiServices obqwi;
+        public readonly IMemoryCache cache;
 
         public HomeController(
             IStatisticsService statistics,
-            IObqwiServices obqwi)
+            IObqwiServices obqwi,
+            IMemoryCache cache)
         {
             this.statistics = statistics;
             this.obqwi = obqwi;
+            this.cache = cache;
         }
         public IActionResult Index()
         {
-            var latestObqwi = this.obqwi
-                .Latest()
-                .ToList();
+            const string latestObqwiCacheKey = "latestObqwi";
+
+            var latestObqwi = this.cache.Get<List<LatestObqwaServiseModel>>(latestObqwiCacheKey);
+
+            if (latestObqwi == null)
+            {
+                 latestObqwi = this.obqwi
+                    .Latest()
+                    .ToList();
+
+                var casheOptions = new MemoryCacheEntryOptions()
+                    .SetAbsoluteExpiration(TimeSpan.FromMinutes(15));
+
+
+                this.cache.Set(latestObqwiCacheKey, latestObqwi , casheOptions);
+            }
+
 
             var TotalStatistics = this.statistics.Total();
 

@@ -7,6 +7,7 @@
     using МоитеГуми.Services.Obqwi;
     using МоитеГуми.Services.Dealers;
     using AutoMapper;
+    using Microsoft.Extensions.Logging;
 
     public class ОбяваController : Controller
     {
@@ -17,7 +18,8 @@
         public ОбяваController(
             IObqwiServices obqwi,
             IDealerService dealers,
-            IMapper mapper)
+            IMapper mapper
+            )
         {
             this.obqwi = obqwi;
             this.dealers = dealers;
@@ -32,6 +34,7 @@
                 query.Sorting,
                 query.CurrentPage,
                 ObqwiSearchingModel.ObqwiPerPage);
+
 
             var obqwiMarki = this.obqwi.AllMarki();
 
@@ -56,7 +59,7 @@
         public IActionResult Delete(int Id)
         {
             this.obqwi.DeleteAnoncment(Id);
-            
+
             return RedirectToAction(nameof(All));
         }
 
@@ -162,14 +165,14 @@
                 return BadRequest();
             }
 
-             this.obqwi.Edit(
-                     Id,
-                     obqva.Marka,
-                     obqva.Description,
-                     obqva.Year,
-                     obqva.CategoryId,
-                     obqva.ImageUrl,
-                     obqva.Size);
+            this.obqwi.Edit(
+                    Id,
+                    obqva.Marka,
+                    obqva.Description,
+                    obqva.Year,
+                    obqva.CategoryId,
+                    obqva.ImageUrl,
+                    obqva.Size);
 
             return RedirectToAction(nameof(All));
         }
@@ -178,12 +181,12 @@
         //[HttpPost]
         public IActionResult Info(int Id)
         {
-           var currentObqwa = this.obqwi.Info(Id);
+            var currentObqwa = this.obqwi.Info(Id);
 
             return View(currentObqwa);
         }
-       
-       
+
+
 
     }
 

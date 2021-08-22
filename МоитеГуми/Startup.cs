@@ -44,6 +44,7 @@ namespace МоитеГуми
 
             services.AddAutoMapper(typeof(Startup));
 
+            services.AddMemoryCache();
 
             services.AddControllersWithViews(options =>
             {
