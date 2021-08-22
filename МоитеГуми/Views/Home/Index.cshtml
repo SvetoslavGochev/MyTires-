@@ -26,9 +26,10 @@
 <div class="carousel-item @(i == 0 ? "active" : string.Empty)">
     <img src="@obqwa.ImageUrl" class="d-block w-100" alt="@obqwa.Marka @obqwa.Size @obqwa.Category">
     <div class="carousel-caption d-none d-md-block">
-        <h5><a class="btn btn-info" asp-controller="Обява" asp-action="Details" asp-route-id="@obqwa.Id"> @obqwa.Marka @obqwa.Size @obqwa.Category"</a></h5>
+        <h5><a class="btn btn-info" asp-controller="Обява" asp-action="Details" asp-route-id="@obqwa.Id" asp-route-information="@(obqwa.Marka +" " + @obqwa.Size)"> @obqwa.Marka @obqwa.Size @obqwa.Category"</a></h5>
     </div>
-</div>}
+</div>
+        }
     </div>
     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>

@@ -54,7 +54,13 @@
             return View(myObqwi);
         }
 
+        public IActionResult Details(int Id, string information)
+        {
+            var obqwa = this.obqwi.Details(Id);
 
+
+            return View(obqwa);
+        }
 
         [Authorize]
         public IActionResult Delete(int Id)
@@ -136,7 +142,9 @@
             var obqwaForm = this.mapper.Map<ObqwaModel>(currentObqwa);
 
             obqwaForm.Categories = this.obqwi.AllCategories();
+
             TempData[GlobalMessageKey] = "Вашата обява редактирана";
+
             return View(obqwaForm);
         }
 

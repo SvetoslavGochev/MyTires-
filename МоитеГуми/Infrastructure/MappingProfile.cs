@@ -2,7 +2,6 @@
 {
     using AutoMapper;
     using МоитеГуми.Data.Models;
-    using МоитеГуми.Models.Home;
     using МоитеГуми.Models.Обява;
     using МоитеГуми.Services.Obqwi;
 
@@ -15,9 +14,8 @@
 
 
             this.CreateMap<Обява, ObqwaDetailsServiceModel>()
-                .ForMember(c => c.UserId, cfg => cfg.MapFrom(c => c.Dealer.UserId));
-
-          
+                .ForMember(c => c.UserId, cfg => cfg.MapFrom(c => c.Dealer.UserId))
+                .ForMember(c => c.CategoryName, cfg => cfg.MapFrom(c => c.Category.Name));
         }
     }
     
