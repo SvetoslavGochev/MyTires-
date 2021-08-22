@@ -7,7 +7,8 @@
     using МоитеГуми.Services.Obqwi;
     using МоитеГуми.Services.Dealers;
     using AutoMapper;
-    using Microsoft.Extensions.Logging;
+
+    using static WebConstatnts;
 
     public class ОбяваController : Controller
     {
@@ -110,6 +111,8 @@
                 obqva.Size,
                 dealerId);
 
+            TempData[GlobalMessageKey] = "Вашата обява е запазена";
+
             return RedirectToAction(nameof(All));// Always REDIREKT
         }
 
@@ -133,7 +136,7 @@
             var obqwaForm = this.mapper.Map<ObqwaModel>(currentObqwa);
 
             obqwaForm.Categories = this.obqwi.AllCategories();
-
+            TempData[GlobalMessageKey] = "Вашата обява редактирана";
             return View(obqwaForm);
         }
 

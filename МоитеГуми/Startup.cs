@@ -45,6 +45,7 @@ namespace МоитеГуми
             services.AddAutoMapper(typeof(Startup));
 
             services.AddMemoryCache();
+            services.AddSession();
 
             services.AddControllersWithViews(options =>
             {
@@ -76,11 +77,10 @@ namespace МоитеГуми
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
-
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

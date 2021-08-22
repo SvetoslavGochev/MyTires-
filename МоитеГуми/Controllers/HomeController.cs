@@ -30,6 +30,8 @@
 
             var latestObqwi = this.cache.Get<List<LatestObqwaServiseModel>>(latestObqwiCacheKey);
 
+            this.TempData["SomeValue"] = 5;
+
             if (latestObqwi == null)
             {
                  latestObqwi = this.obqwi

@@ -8,6 +8,7 @@
     using МоитеГуми.Infrastructure;
     using МоитеГуми.Models.Dealers;
 
+    using static WebConstatnts;
     public class DealersController : Controller
     {
         private readonly ApplicationDbContext data;
@@ -54,6 +55,7 @@
             this.data.Dealers.Add(dealerData);
             this.data.SaveChanges();
 
+            this.TempData[GlobalMessageKey] = "Благодаря, че станахте дилар!";
 
             return RedirectToAction("All", "Обява");
         }
