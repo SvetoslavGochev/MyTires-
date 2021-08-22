@@ -57,6 +57,10 @@
         public IActionResult Details(int Id, string information)
         {
             var obqwa = this.obqwi.Details(Id);
+            if (information != obqwa.GetInformation())
+            {
+                return BadRequest();
+            }
 
 
             return View(obqwa);

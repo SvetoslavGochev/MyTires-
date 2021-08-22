@@ -85,6 +85,12 @@ namespace МоитеГуми
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapDefoultAreaRoute();
+
+                endpoints.MapControllerRoute(
+                    name: "Annoncement Details",
+                    pattern: "/Обява/Details/{id}/{informations}",
+                    defaults: new { controller = "Обява", action = "Details" });
+
                 endpoints.MapDefaultControllerRoute();
                 endpoints.MapRazorPages();
             });

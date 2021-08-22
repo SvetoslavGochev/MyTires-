@@ -1,6 +1,6 @@
 ﻿namespace МоитеГуми.Services.Obqwi
 {
-    public class ObqwaServicesModel
+    public class ObqwaServicesModel : IObqwaModel
     {
         public int Id { get; set; }
 
