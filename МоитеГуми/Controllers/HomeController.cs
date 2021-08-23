@@ -9,6 +9,8 @@
     using System.Collections.Generic;
     using System;
 
+    using static WebConstatnts.Cache;
+
     public class HomeController : Controller
     {
         private readonly IStatisticsService statistics;
@@ -26,9 +28,9 @@
         }
         public IActionResult Index()
         {
-            const string latestObqwiCacheKey = "latestObqwi";
+            
 
-            var latestObqwi = this.cache.Get<List<LatestObqwaServiseModel>>(latestObqwiCacheKey);
+            var latestObqwi = this.cache.Get<List<LatestObqwaServiseModel>>(LatestObqwiCacheKey);
 
             this.TempData["SomeValue"] = 5;
 
@@ -42,7 +44,7 @@
                     .SetAbsoluteExpiration(TimeSpan.FromMinutes(15));
 
 
-                this.cache.Set(latestObqwiCacheKey, latestObqwi , casheOptions);
+                this.cache.Set(LatestObqwiCacheKey, latestObqwi , casheOptions);
             }
 
 

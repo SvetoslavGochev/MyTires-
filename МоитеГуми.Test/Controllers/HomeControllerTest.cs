@@ -14,6 +14,9 @@
     using System.Collections.Generic;
     using FluentAssertions;
 
+    using static Data.Obqwi;
+    using static WebConstatnts.Cache;
+
     public class HomeControllerTest
     {
         [Fact]
@@ -23,12 +26,12 @@
             .ShouldMap("/")
             .To<HomeController>(C => C.Index())
             .Which(controller => controller
-            .WithData(GetAnnouncement())       
+            .WithData(TenPublicAnnouncement())
             .ShouldReturn()
             .View(view => view
             .WithModelOfType<ObqwaViewModel>()
             .Passing(m => m.obqwi.Should().HaveCount(0))));
-            
+
 
         [Fact]
         public void IndexShouldReturnViewWithCorectModel()
@@ -54,12 +57,12 @@
 
             Assert.NotNull(result);
 
-           var viewResult = Assert.IsType<ViewResult>(result);
+            var viewResult = Assert.IsType<ViewResult>(result);
 
 
             var model = viewResult.Model;
 
-           var indexViewModel = Assert.IsType<ObqwaViewModel>(model);
+            var indexViewModel = Assert.IsType<ObqwaViewModel>(model);
 
             Assert.Equal(1, indexViewModel.CountUsers);
             Assert.Equal(10, indexViewModel.CountAnnouncement);
@@ -72,7 +75,7 @@
             //arange 
             var homewController = new HomeController(
                 null,
-                null,null);
+                null, null);
             //act
             var result = homewController.Error();
             //assert
@@ -80,10 +83,14 @@
             Assert.IsType<ViewResult>(result);
         }
 
-        private static IEnumerable<Обява> GetAnnouncement()
-            => Enumerable
-                .Range(0, 10)
-                .Select(i => new Обява());
-
+        [Fact]
+        public void ErrorShouldReturnViews()
+        => MyMvc
+            .Pipeline()
+            .ShouldMap("/Home/Error")
+            .To<HomeController>(c => c.Error())
+            .Which()
+            .ShouldReturn()
+            .View();
     }
 }
