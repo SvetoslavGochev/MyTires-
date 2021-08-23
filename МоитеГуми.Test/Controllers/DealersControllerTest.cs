@@ -79,7 +79,7 @@
             .Calling(c => c.Create())
             .ShouldReturn()
             .View();
-        //1
+
         [Theory]
         [InlineData("dealer", "1234567")]
         public void PostCreateShouldBeForAuthorizeduserAndReturnView(string dealerName,
@@ -110,10 +110,65 @@
             .ShouldReturn()
             .Redirect(r => r
             .To<ОбяваController>(c => c.All(With.Any<ObqwiSearchingModel>())));
-              
-        ///2
-        ///
-        //[Fact]
-        //public void
+
+        [Fact]
+        public void GetCreateShouldBeForAuthorizeduserandreturnView()
+         => MyPipeline
+            .Configuration()
+            .ShouldMap(r => r
+            .WithPath("/Dealers/Create")
+            .WithUser())
+            .To<DealersController>(c => c.Create())
+            .Which()
+            .ShouldHave()
+            .ActionAttributes(a => a
+            .RestrictingForAuthorizedRequests())
+            .AndAlso()
+            .ShouldReturn()
+            .View();
+
+
+        [Theory]
+        [InlineData("dealer", "1234567")]
+        public void PostCreateShouldBeForAuthorizeduserAndReturnView2(string dealerName,
+            string phoneNumber)
+            => MyPipeline
+            .Configuration()
+            .ShouldMap(r => r
+            .WithPath("/Dealers/Create")
+            .WithMethod(HttpMethod.Post)
+            .WithFormFields(new 
+            {
+                Name = dealerName,
+                PhoneNumber = phoneNumber
+            })
+            .WithUser()
+            .WithAntiForgeryToken())
+            .To<DealersController>(c => c.Create(new BecomeDealerFormModel
+            {
+                Name = dealerName,
+                PhoneNumber = phoneNumber
+            }))
+            .Which()
+            .ShouldHave()
+            .ActionAttributes(a => a
+            .RestrictingForHttpMethod(HttpMethod.Post)
+            .RestrictingForAuthorizedRequests())
+            .ValidModelState()
+            .Data(data => data.WithSet<Dealer>(dealer =>
+            {
+                dealer.Any(d =>
+                d.Name == dealerName &&
+                d.PhoneNumber == phoneNumber &&
+                d.UserId == TestUser.Identifier);
+            }))
+            .TempData(tempData => tempData
+            .ContainingEntryWithKey(GlobalMessageKey))
+            .AndAlso()
+            .ShouldReturn()
+            .Redirect(r => r
+            .To<ОбяваController>(c => c.All(With.Any<ObqwiSearchingModel>())));
+
+
     }
 }
