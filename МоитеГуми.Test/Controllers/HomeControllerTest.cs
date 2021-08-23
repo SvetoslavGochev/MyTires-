@@ -123,5 +123,12 @@
          .Configuration()
             .ShouldMap("/Home/Error")
             .To<HomeController>(c => c.Error());
+
+        [Fact]
+        public void IndexShouldBeMapped()
+       => MyRouting
+         .Configuration()
+            .ShouldMap("/")
+            .To<HomeController>(c => c.Index());
     }
 }
