@@ -38,11 +38,14 @@
                 int year,
                 int categoryId,
                 string imageUrl,
-                string size);
+                string size,
+                bool isPublic);
 
         IEnumerable<ObqwaServicesModel> ByUser(string userId);
 
         bool IsByDealer(int obqwaId, int dealerId);
+
+        void ChangeVisibility(int obqwaId);
 
         IEnumerable<string> AllMarki();
 

@@ -5,7 +5,7 @@
     using System.Linq;
     using МоитеГуми.Data;
     using МоитеГуми.Data.Models;
-    using МоитеГуми.Infrastructure;
+    using МоитеГуми.Infrastructure.Extensions;
     using МоитеГуми.Models.Dealers;
 
     using static WebConstatnts;

@@ -1,4 +1,4 @@
-﻿namespace МоитеГуми.Infrastructure
+﻿namespace МоитеГуми.Infrastructure.Extensions
 {
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Routing;

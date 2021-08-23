@@ -1,4 +1,4 @@
-﻿namespace МоитеГуми.Infrastructure
+﻿namespace МоитеГуми.Infrastructure.Extensions
 {
     using System.Security.Claims;
     using static Areas.Admin.AdminConstants;

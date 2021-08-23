@@ -28,7 +28,7 @@
             bool publicOnly = true)
         {
             var obqwaQuery = this.data.Обяви
-                .Where(o => o.IsPublic == publicOnly);
+                .Where(o => !publicOnly || o.IsPublic);
 
             if (!string.IsNullOrWhiteSpace(marka))
             {
@@ -84,32 +84,19 @@
 
         private IEnumerable<ObqwaServicesModel> GetObqwi(IQueryable<Обява> obqwaQuery)
         => obqwaQuery
-            .Select(a => new ObqwaServicesModel
-            {
-                Id = a.Id,
-                ImageUrl = a.ImageUrl,
-                Marka = a.Marka,
-                Size = a.Size,
-                Year = a.Year,
-                CategoryName = a.Category.Name,
-                Description = a.Description
-            })
+            .ProjectTo<ObqwaServicesModel>(this.mapper.ConfigurationProvider)
                .ToList();
 
         public IEnumerable<ObqwaCategoryServiceModel> AllCategories()
             => this.data
             .Categories
-            .Select(o => new ObqwaCategoryServiceModel
-            {
-                Id = o.Id,
-                Name = o.Name
-            })
+            .ProjectTo<ObqwaCategoryServiceModel>(this.mapper.ConfigurationProvider)
             .ToList();
         public ObqwaDetailsServiceModel Details(int obqwaId)
              => this.data
                 .Обяви
                 .Where(o => o.Id == obqwaId)
-            .ProjectTo<ObqwaDetailsServiceModel>(this.mapper.ConfigurationProvider)
+                .ProjectTo<ObqwaDetailsServiceModel>(this.mapper.ConfigurationProvider)
                 .FirstOrDefault();
 
         public bool CategoryExist(int categoryId)
@@ -135,7 +122,15 @@
             return obqvaData.Id;
         }
 
-        public bool Edit(int obqwaId, string marka, string description, int year, int categoryId, string imageUrl, string size)
+        public bool Edit(
+            int obqwaId,
+            string marka,
+            string description,
+            int year,
+            int categoryId,
+            string imageUrl,
+            string size,
+            bool isPublic)
         {
             var obqvaData = this.data.Обяви.Find(obqwaId);
 
@@ -150,7 +145,7 @@
             obqvaData.CategoryId = categoryId;
             obqvaData.ImageUrl = imageUrl;
             obqvaData.Size = size;
-            obqvaData.IsPublic = false;
+            obqvaData.IsPublic = isPublic;
 
             this.data.SaveChanges();
 
@@ -190,6 +185,13 @@
               .Take(3)
               .ToList();
 
-       
+        public void ChangeVisibility(int obqwaId)
+        {
+            var obqwa = this.data.Обяви.Find(obqwaId);
+
+            obqwa.IsPublic = !obqwa.IsPublic;
+
+            this.data.SaveChanges();
+        }
     }
 }

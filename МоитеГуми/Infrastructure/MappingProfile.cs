@@ -9,6 +9,11 @@
     {
         public MappingProfile()
         {
+            this.CreateMap<Обява, ObqwaServicesModel>()
+            .ForMember(c => c.CategoryName, cfg => cfg.MapFrom(c => c.Category.Name));
+
+            this.CreateMap<Category, ObqwaCategoryServiceModel>();
+
             this.CreateMap<ObqwaDetailsServiceModel, ObqwaModel>();
             this.CreateMap<Обява, LatestObqwaServiseModel>();
 

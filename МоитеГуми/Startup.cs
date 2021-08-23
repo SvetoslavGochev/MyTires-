@@ -10,7 +10,7 @@ namespace МоитеГуми
     using Microsoft.Extensions.Hosting;
     using МоитеГуми.Data;
     using МоитеГуми.Data.Models;
-    using МоитеГуми.Infrastructure;
+    using МоитеГуми.Infrastructure.Extensions;
     using МоитеГуми.Services.Dealers;
     using МоитеГуми.Services.Obqwi;
     using МоитеГуми.Services.Statistics;

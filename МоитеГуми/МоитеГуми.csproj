@@ -8,10 +8,12 @@
 
   <ItemGroup>
     <Content Remove="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Remove="Areas\Admin\Views\Обява\_ViewImports.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <None Include="Areas\Admin\Views\_ViewImports.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
     <None Include="Views\Home\Privacy.cshtml" />
     <None Include="Views\Shared\Error.cshtml" />

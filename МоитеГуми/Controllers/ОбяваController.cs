@@ -3,7 +3,7 @@
     using Microsoft.AspNetCore.Mvc;
     using МоитеГуми.Models.Обява;
     using Microsoft.AspNetCore.Authorization;
-    using МоитеГуми.Infrastructure;
+    using МоитеГуми.Infrastructure.Extensions;
     using МоитеГуми.Services.Obqwi;
     using МоитеГуми.Services.Dealers;
     using AutoMapper;
@@ -186,9 +186,10 @@
                     obqva.Year,
                     obqva.CategoryId,
                     obqva.ImageUrl,
-                    obqva.Size);
+                    obqva.Size,
+                    this.User.IsAdmin());
 
-            TempData[GlobalMessageKey] = "Вашата обява редактирана и чака за одобрение";
+            TempData[GlobalMessageKey] = $"Вашата обява редактирана {(this.User.IsAdmin() ? string.Empty : "чака одобрение")}";
 
             return RedirectToAction(nameof(Details), new { Id , information = obqva.GetInformation() });
         }
