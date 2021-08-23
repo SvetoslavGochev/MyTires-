@@ -40,6 +40,14 @@
            .AndAlso()
            .ShouldReturn()
            .View();
+
+        [Fact]
+        public void GetCreateShouldbeMaped()
+           => MyRouting
+            .Configuration()
+            .ShouldMap("/Dealers/Create")
+            .To<DealersController>(c => c.Create());
+
        
 
     }

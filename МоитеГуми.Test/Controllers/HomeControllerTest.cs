@@ -126,7 +126,7 @@
 
         [Fact]
         public void IndexShouldBeMapped()
-       => MyRouting
+          => MyRouting
          .Configuration()
             .ShouldMap("/")
             .To<HomeController>(c => c.Index());
