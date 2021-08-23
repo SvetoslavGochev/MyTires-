@@ -57,9 +57,24 @@
             .WithPath("/Dealers/Create")
             .WithMethod(HttpMethod.Post))
             .To<DealersController>(c => c.Create(With.Any<BecomeDealerFormModel>()));
-            
 
-       
+        [Fact]
+        public void CreateShouldReturnViewOnGet()
+            => MyController<DealersController>
+            .Instance()
+            .Calling(c => c.Create())
+            .ShouldHave()
+            .ActionAttributes(a => a
+                .RestrictingForAuthorizedRequests());
+
+        [Fact]
+        public void CreateShouldReturnViewOnPost()
+            => MyController<DealersController>
+            .Instance()
+            .Calling(c => c.Create())
+            .ShouldReturn()
+            .View();
+
 
     }
 }
