@@ -3,6 +3,7 @@
     using Xunit;
     using MyTested.AspNetCore.Mvc;
     using МоитеГуми.Controllers;
+    using МоитеГуми.Models.Dealers;
 
     public class DealersControllerTest
     {  
@@ -47,6 +48,16 @@
             .Configuration()
             .ShouldMap("/Dealers/Create")
             .To<DealersController>(c => c.Create());
+
+        [Fact]
+        public void PostCreateShouldbeMaped()
+           => MyRouting
+            .Configuration()
+            .ShouldMap(request => request
+            .WithPath("/Dealers/Create")
+            .WithMethod(HttpMethod.Post))
+            .To<DealersController>(c => c.Create(With.Any<BecomeDealerFormModel>()));
+            
 
        
 
