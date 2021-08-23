@@ -20,14 +20,15 @@
         }
 
         public ObqwaQueryServicesModel All(
-            string marka,
-            string searchTerm,
-            ObqwiSorting obqwiSorting,
-            int currentPage,
-            int obqwiPerPage
-            )
+             string marka = null,
+            string searchTerm = null,
+            ObqwiSorting obqwiSorting = ObqwiSorting.DateCreated,
+            int currentPage = 1,
+            int obqwiPerPage = int.MaxValue,
+            bool publicOnly = true)
         {
-            var obqwaQuery = this.data.Обяви.AsQueryable();//vzima zaqvkata kym bazata za obqvite
+            var obqwaQuery = this.data.Обяви
+                .Where(o => o.IsPublic == publicOnly);
 
             if (!string.IsNullOrWhiteSpace(marka))
             {
@@ -124,7 +125,8 @@
                 CategoryId = categoryId,
                 ImageUrl = imageUrl,
                 Size = size,
-                DealerId = dealerId
+                DealerId = dealerId,
+                IsPublic = false
             };
 
             this.data.Обяви.Add(obqvaData);
@@ -148,6 +150,7 @@
             obqvaData.CategoryId = categoryId;
             obqvaData.ImageUrl = imageUrl;
             obqvaData.Size = size;
+            obqvaData.IsPublic = false;
 
             this.data.SaveChanges();
 
@@ -181,6 +184,7 @@
         public IEnumerable<LatestObqwaServiseModel> Latest()
         => this.data
               .Обяви
+              .Where(o => o.IsPublic)
               .OrderByDescending(c => c.Id)
               .ProjectTo<LatestObqwaServiseModel>(this.mapper.ConfigurationProvider)
               .Take(3)

@@ -112,7 +112,7 @@
                 return View(obqva);
             }
 
-            this.obqwi.Create(
+           var obqwaId = this.obqwi.Create(
                 obqva.Marka,
                 obqva.Description,
                 obqva.Year,
@@ -121,9 +121,9 @@
                 obqva.Size,
                 dealerId);
 
-            TempData[GlobalMessageKey] = "Вашата обява е запазена";
+            TempData[GlobalMessageKey] = "Вашата обява е запазена и чака за одобрение";
 
-            return RedirectToAction(nameof(All));// Always REDIREKT
+            return RedirectToAction(nameof(Details), new { id = obqwaId, information = obqva.GetInformation()});// Always REDIREKT
         }
 
         [Authorize]
@@ -147,7 +147,6 @@
 
             obqwaForm.Categories = this.obqwi.AllCategories();
 
-            TempData[GlobalMessageKey] = "Вашата обява редактирана";
 
             return View(obqwaForm);
         }
@@ -189,7 +188,9 @@
                     obqva.ImageUrl,
                     obqva.Size);
 
-            return RedirectToAction(nameof(All));
+            TempData[GlobalMessageKey] = "Вашата обява редактирана и чака за одобрение";
+
+            return RedirectToAction(nameof(Details), new { Id , information = obqva.GetInformation() });
         }
 
         [Authorize]

@@ -48,7 +48,7 @@
 
             var statisticServise = new StatisticsService(data);
 
-            var homeController = new HomeController(statisticServise, obqwaServise);
+            var homeController = new HomeController(statisticServise, obqwaServise, null);
 
             var result = homeController.Index();
 
@@ -72,7 +72,7 @@
             //arange 
             var homewController = new HomeController(
                 null,
-                null);
+                null,null);
             //act
             var result = homewController.Error();
             //assert

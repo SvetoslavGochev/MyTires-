@@ -6,7 +6,7 @@
 
         public int CategoryId { get; init; }
 
-        public string CategoryName { get; set; }
+        //public string CategoryName { get; set; }
 
         public string DealerName { get; init; }
 

@@ -2,8 +2,9 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using МоитеГуми.Services.Obqwi;
     using static МоитеГуми.Data.Models.DataConstatnt.Obqwa;
-    public class ObqwaModel
+    public class ObqwaModel : IObqwaModel
     {
         [Required]
         [StringLength(carMax, MinimumLength = SizeMinLength, ErrorMessage = "Maximum: {0} symbols")]

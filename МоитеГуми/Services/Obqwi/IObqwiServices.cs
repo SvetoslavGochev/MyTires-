@@ -6,13 +6,16 @@
     public interface IObqwiServices
     {
         Обява Info(int Id);
+
         void DeleteAnoncment(int Id);
+
         ObqwaQueryServicesModel All(
-            string marka,
-            string searchTerm,
-            ObqwiSorting obqwiSorting,
-            int currentPage,
-            int obqwiPerPage);
+            string marka = null,
+            string searchTerm = null,
+            ObqwiSorting obqwiSorting = ObqwiSorting.DateCreated,
+            int currentPage = 1,
+            int obqwiPerPage = int.MaxValue,
+            bool publicOnly = true);
 
         IEnumerable<LatestObqwaServiseModel> Latest();
 

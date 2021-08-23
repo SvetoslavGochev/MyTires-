@@ -16,7 +16,7 @@
         }
 
         [HttpGet]
-        public ObqwaQueryServicesModel AllObqwi([FromQuery] AllObqwiApiRequestModel query)
+        public ObqwaQueryServicesModel All([FromQuery] AllObqwiApiRequestModel query)
         {
             return this.obqwa.All(
                 query.Marka,

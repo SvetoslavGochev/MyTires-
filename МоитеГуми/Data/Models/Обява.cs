@@ -10,7 +10,6 @@
         [MaxLength(carMax)]
         public string Marka { get; set; }
 
-        
 
         [Required]
         public string Description { get; set; }
@@ -22,6 +21,8 @@
         public string ImageUrl { get; set; }
 
         public int Year { get; set; }
+
+        public bool IsPublic { get; set; }
 
         public int CategoryId { get; set; }
 

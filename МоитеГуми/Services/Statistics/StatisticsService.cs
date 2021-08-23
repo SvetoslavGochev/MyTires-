@@ -11,7 +11,7 @@
 
         public StatisticsServiceModel Total()
         {
-            var obqwiCount = this.data.Обяви.Count();
+            var obqwiCount = this.data.Обяви.Count( o => o.IsPublic);
             var countUsers = this.data.Users.Count();
 
             return new StatisticsServiceModel

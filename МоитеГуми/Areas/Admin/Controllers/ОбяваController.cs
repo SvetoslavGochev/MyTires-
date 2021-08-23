@@ -1,12 +1,12 @@
-﻿namespace МоитеГуми.Areas.Admim.Controllers
+﻿namespace МоитеГуми.Areas.Admin.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
-    using МоитеГуми.Areas.Admin.Controllers;
-    using static Admin.AdminConstants;
 
-    [Area(AreaName)]
     public class ОбяваController : AdminController
     {
-        public IActionResult Index => View();
+        public IActionResult Index()
+        {
+            return View();
+        }
     }
 }
