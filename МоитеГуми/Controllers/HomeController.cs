@@ -28,8 +28,6 @@
         }
         public IActionResult Index()
         {
-            
-
             var latestObqwi = this.cache.Get<List<LatestObqwaServiseModel>>(LatestObqwiCacheKey);
 
             this.TempData["SomeValue"] = 5;

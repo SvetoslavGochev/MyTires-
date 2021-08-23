@@ -92,5 +92,17 @@
             .Which()
             .ShouldReturn()
             .View();
+
+        [Fact]
+        public void IndexactionshouldReturnCorrectViewWithModel()
+            => MyController<HomeController>
+            .Instance(instase => instase
+                .WithData(TenPublicAnnouncement()))
+            .Calling(c => c.Index())
+            .ShouldReturn()
+            .View(view => view
+            .WithModelOfType<ObqwaViewModel>());
+            
+          
     }
 }
