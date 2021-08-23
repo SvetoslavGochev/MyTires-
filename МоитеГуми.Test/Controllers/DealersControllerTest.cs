@@ -8,7 +8,7 @@
     {  
         [Fact]
         public void ControllerTest()
-       => MyController<DealersController>
+          => MyController<DealersController>
             .Instance()
             .Calling(c => c.Create())
             .ShouldHave()
@@ -17,5 +17,13 @@
             .AndAlso()
             .ShouldReturn()
             .View();
+
+        [Fact]
+        public void RouteTest()
+            => MyRouting
+            .Configuration()
+            .ShouldMap("/Dealers/Create")
+            .To<DealersController>(c => c.Create());
+
     }
 }
