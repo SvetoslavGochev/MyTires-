@@ -102,7 +102,19 @@
             .ShouldReturn()
             .View(view => view
             .WithModelOfType<ObqwaViewModel>());
-            
-          
+
+        [Fact]
+        public void IndexActionshouldReturnCorrectViewWithModelAndCacheMemori()
+          => MyController<HomeController>
+          .Instance(instase => instase
+              .WithData(TenPublicAnnouncement()))
+          .Calling(c => c.Index())
+            .ShouldHave()
+            .MemoryCache(cache => cache
+            .ContainingEntryWithKey(LatestObqwiCacheKey))
+            .AndAlso()
+          .ShouldReturn()
+          .View(view => view
+          .WithModelOfType<ObqwaViewModel>());
     }
 }
