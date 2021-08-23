@@ -25,5 +25,21 @@
             .ShouldMap("/Dealers/Create")
             .To<DealersController>(c => c.Create());
 
+        [Fact]
+        public void CreateShoulBeForAutorizationUserAndReturnView()
+         => MyMvc
+            .Pipeline()
+            .ShouldMap(request => request
+            .WithPath("/Dealers/Create")
+            .WithUser())
+           .To<DealersController>(c => c.Create())
+            .Which()
+           .ShouldHave()
+           .ActionAttributes(attributes => attributes
+           .RestrictingForAuthorizedRequests())
+           .AndAlso()
+           .ShouldReturn()
+           .View();
+
     }
 }
