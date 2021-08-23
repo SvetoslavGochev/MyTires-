@@ -116,5 +116,12 @@
           .ShouldReturn()
           .View(view => view
           .WithModelOfType<ObqwaViewModel>());
+
+        [Fact]
+        public void IndexRouteShouldBeMapped()
+       => MyRouting
+         .Configuration()
+            .ShouldMap("/Home/Error")
+            .To<HomeController>(c => c.Error());
     }
 }
