@@ -1,13 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace МоитеГуми.Controllers
+﻿namespace МоитеГуми.Controllers
 {
-
+    using Microsoft.AspNetCore.Mvc;
+    using МоитеГуми.Models.Connection;
+    using static МоитеГуми.Data.Models.DataConstatnt.Connection;
     public class ConnectionController : Controller
     {
         public IActionResult Index()
         {
-            return View();
+            return View(new ConnectionViewModel { connection = ConnectionString });
         }
     }
 }

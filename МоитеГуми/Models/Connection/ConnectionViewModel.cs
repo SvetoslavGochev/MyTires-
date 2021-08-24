@@ -3,6 +3,6 @@
     using static Data.Models.DataConstatnt.Connection;
     public class ConnectionViewModel
     {
-        public string connection = ConnectionString;
+        public string connection { get; set; }
     }
 }

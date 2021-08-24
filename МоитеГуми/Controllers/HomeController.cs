@@ -45,7 +45,6 @@
                 this.cache.Set(LatestObqwiCacheKey, latestObqwi , casheOptions);
             }
 
-
             var TotalStatistics = this.statistics.Total();
 
             return this.View(new ObqwaViewModel

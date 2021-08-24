@@ -6,5 +6,7 @@
         public int Id { get; init; }
 
         public string connection = ConnectionString;
+
+        public string connectionString { get; set; }
     }
 }
