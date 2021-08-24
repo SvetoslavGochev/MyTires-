@@ -5,6 +5,7 @@
         public class Connection
         {
             public const string ConnectionString = "Връзка с нас";
+            public const string Privacy = "Условия за ползване";
         }
         public class User
         {
