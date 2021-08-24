@@ -2,6 +2,10 @@
 {
     public class DataConstatnt
     {
+        public class Connection
+        {
+            public const string ConnectionString = "Връзка с нас";
+        }
         public class User
         {
             public const int FullNameMaxLength = 40;

@@ -13,6 +13,7 @@
         public DbSet<Category> Categories { get; init; }
         public DbSet<Обява> Обяви { get; init; }
         public DbSet<Dealer> Dealers { get; init; }
+        public DbSet<Dealer> Connections { get; init; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
