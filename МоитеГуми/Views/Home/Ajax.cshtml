@@ -1,0 +1,34 @@
+﻿<h1>Hi Ajax</h1>
+
+<table id="DataTable" class="table table-sm table-striped">
+    <tr>
+        <td>
+            ss
+        </td>
+
+    </tr>
+    <tr>
+        <td>ss3434</td>
+    </tr>
+</table>
+<button onclick="AA()">data</button>
+
+<script>
+    function AA() {
+        let xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+               // console.log(this.responseText);
+                var People = JSON.parse(this.responseText);
+                for (var i = 0; i < People.length; i++) {
+                    var person = People[i];
+                    document.getElementById("DataTable").innerHTML +=
+                        "<tr><td>" + person.name + "</td><td>" + person.date + "</td></tr>"
+                    console.log(person);
+                }
+            };
+        };
+        xhr.open("GET", "/Home/AjaxData");
+        xhr.send();
+    }
+</script>

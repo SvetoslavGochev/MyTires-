@@ -17,6 +17,19 @@
         public readonly IObqwiServices obqwi;
         public readonly IMemoryCache cache;
 
+        public IActionResult Ajax()
+        {
+            return View();
+        }
+
+        public IActionResult AjaxData()
+        {
+           return this.Json(new[] {
+               new { Name = "ss", Date = DateTime.UtcNow.ToString("O")},
+               new { Name = "ss3434", Date = DateTime.UtcNow.AddDays(1).ToString("O") },
+            });
+        }
+
         public HomeController(
             IStatisticsService statistics,
             IObqwiServices obqwi,

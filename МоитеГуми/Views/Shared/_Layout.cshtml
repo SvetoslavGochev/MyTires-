@@ -50,8 +50,14 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy;@DateTime.UtcNow.Year  - Моите Гуми
+            <span style="display: inline-block">&copy;@DateTime.UtcNow.Year  - Моите Гуми</span> 
+            <ul style="display: inline-block">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Обява" asp-action="All">Всички обяви</a>
+                </li>
+            </ul>
         </div>
+      
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
