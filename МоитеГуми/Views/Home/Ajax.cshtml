@@ -20,6 +20,7 @@
             if (this.readyState == 4 && this.status == 200) {
                // console.log(this.responseText);
                 var People = JSON.parse(this.responseText);
+                document.getElementById("DataTable").innerHTML = "";
                 for (var i = 0; i < People.length; i++) {
                     var person = People[i];
                     document.getElementById("DataTable").innerHTML +=
