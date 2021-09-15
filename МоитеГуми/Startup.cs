@@ -84,7 +84,7 @@ namespace МоитеГуми
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapDefoultAreaRoute();
+                endpoints.MapDefoultAreaRoute();//za area
 
                 endpoints.MapControllerRoute(
                     name: "Annoncement Details",
